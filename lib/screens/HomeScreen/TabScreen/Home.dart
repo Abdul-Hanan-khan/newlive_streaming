@@ -38,7 +38,6 @@ class _HomeState extends State<Home> {
    final String id = prefs.getString('email').toString();
    final userRef = FirebaseFirestore.instance.collection('User');
    userRef.doc(id).get().then((DocumentSnapshot doc) {
-
      Variables.name = (doc.get('name').toString());
      Variables.email = (doc.get('email').toString());
      Variables.phone = (doc.get('phone').toString());

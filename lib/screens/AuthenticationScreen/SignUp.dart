@@ -1,6 +1,8 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:newlive_streaming/screens/AuthenticationScreen/SignIn.dart';
 import 'package:newlive_streaming/screens/AuthenticationScreen/otp/otp_screen.dart';
@@ -35,7 +37,9 @@ class _LoginScreenState extends State<SignUp> {
   final TextEditingController passEditingController = TextEditingController();
   final TextEditingController conpassEditingController = TextEditingController();
   final TextEditingController phoneEditingController = TextEditingController();
-   bool _success;
+  var userEmail;
+  var  userName;
+  bool _success;
   bool isLoading=false;
    String _userEmail;
   String imgStr=
@@ -742,6 +746,7 @@ class _LoginScreenState extends State<SignUp> {
                   ? RaisedButton(
                       elevation: 5.0,
                       onPressed: () {
+                        signInWithFacebook();
                         // if(_key1.currentState.validate() && _key2.currentState.validate()){
                         //   databaseLogin();
                         // }
@@ -926,6 +931,74 @@ class _LoginScreenState extends State<SignUp> {
 
 
   }
+
+  Future<UserCredential> signInWithFacebook() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Trigger the sign-in flow
+    final LoginResult loginResult =
+    await FacebookAuth.instance.login(permissions: [
+      'email',
+      'public_profile',
+    ]);
+
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential =
+    FacebookAuthProvider.credential(loginResult.accessToken.token);
+
+    final userData = await FacebookAuth.instance.getUserData();
+
+    userEmail = userData['email'];
+    userName = userData['name'];
+    // userImg = userData['picture'][0]['data'];
+
+    // print(userImg);
+    // print(userImg);
+
+    if (userData == null || userData.isEmpty) {
+      print('facbook userdata is empty');
+    } else {
+      await firebaseFirestore
+          .collection("User")
+          .where(
+        'email',
+        isEqualTo: userEmail,
+      )
+          .get()
+          .then((value) {
+        if (value.docs.length > 0) {
+          prefs.setString('email', userEmail);
+          Variables.userLoggedIn=userEmail;
+          print('facebook user exits already in our data base');
+        } else {
+          Variables.userLoggedIn=userEmail;
+          Variables.userExistAlready = false;
+          firebaseFirestore
+              .collection("User")
+              .doc(
+            userEmail,
+          )
+              .set({
+            'name': userName,
+            'email': userEmail,
+            'phone': '--------',
+            'password': '------',
+            'Headline': "-----",
+            'position': '-----',
+            'Education': '-----',
+            'Country': '-----',
+            'location': '-----',
+            'industry': '-----',
+            'onlineStatus': 'online',
+            'imgStr': imgStr
+          });
+          prefs.setString('email', userEmail);
+        }
+      });
+    }
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  }
+
   addTodo()async{
     // await firebaseFirestore
     //     .collection("User").where('email',isEqualTo: emailEditingController.text.trim(),).get()
