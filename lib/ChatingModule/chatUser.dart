@@ -22,5 +22,5 @@ class ChatUsers{
   String messageText;
   String imageURL;
   String time;
-  ChatUsers({ this.name, this.messageText, this.imageURL, this.time});
+  ChatUsers({  required this.name,  required this.messageText,  required this.imageURL,  required this.time});
 }

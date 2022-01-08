@@ -61,9 +61,9 @@ class IndexState extends State<IndexPage> {
                     leading: Radio(
                       value: ClientRole.Broadcaster,
                       groupValue: _role,
-                      onChanged: (ClientRole value) {
+                      onChanged: (ClientRole ? value) {
                         setState(() {
-                          _role = value;
+                          _role = value!;
                         });
                       },
                     ),
@@ -73,9 +73,9 @@ class IndexState extends State<IndexPage> {
                     leading: Radio(
                       value: ClientRole.Audience,
                       groupValue: _role,
-                      onChanged: (ClientRole value) {
+                      onChanged: (ClientRole ?value) {
                         setState(() {
-                          _role = value;
+                          _role = value!;
                         });
                       },
                     ),

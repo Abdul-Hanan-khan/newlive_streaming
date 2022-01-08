@@ -7,7 +7,7 @@ import 'package:newlive_streaming/screens/AuthenticationScreen/SignIn.dart';
 import 'package:newlive_streaming/screens/HomeScreen/HomeTabe.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key key}) : super(key: key);
+  const SplashScreen({Key ?key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();

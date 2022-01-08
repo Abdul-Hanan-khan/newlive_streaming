@@ -1,48 +1,48 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TodoModule{
-  String documentid;
-   String name;
-   String email;
-   String phoone;
-   String password;
-   String Headline;
-   String position;
-   String Education;
-   String Country;
-   String location;
-   String industry;
-   String onlineStatus;
-   String imgStr;
+  String? documentid;
+  late String name;
+  late String email;
+  late String phoone;
+  late String password;
+  late String Headline;
+  late String position;
+  late String Education;
+  late String Country;
+  late String location;
+  late String industry;
+  late String onlineStatus;
+  late String imgStr;
 
-TodoModule({
-   this.name,
-  this.email,
-  this.phoone,
-  this.password,
-  this.Headline,
-  this.position,
-  this.Education,
-  this.Country,
-  this.location,
-  this.industry,
-  this.onlineStatus,
-  this.imgStr,
+  TodoModule({
+    required this.name,
+    required this.email,
+    required this.phoone,
+    required this.password,
+    required this.Headline,
+    required this.position,
+    required this.Education,
+    required this.Country,
+    required this.location,
+    required this.industry,
+    required this.onlineStatus,
+    required this.imgStr,
 
-});
-TodoModule.fromDocumentSnapShoot({ DocumentSnapshot documentSnapshot}){
-  documentid=documentSnapshot.id;
-  name=documentSnapshot["name"];
-  email=documentSnapshot["email"];
-  phoone=documentSnapshot["phone"];
-  phoone=documentSnapshot["password"];
-  Headline=documentSnapshot["headline"];
-  position=documentSnapshot["position"];
-  Education=documentSnapshot["education"];
-  Country=documentSnapshot["country"];
-  location=documentSnapshot["location"];
-  industry=documentSnapshot["industry"];
-  onlineStatus=documentSnapshot["onlineStatus"];
-  imgStr=documentSnapshot["imgStr"];
-}
+  });
+  TodoModule.fromDocumentSnapShoot({required DocumentSnapshot documentSnapshot}){
+    documentid=documentSnapshot.id;
+    name=documentSnapshot["name"];
+    email=documentSnapshot["email"];
+    phoone=documentSnapshot["phone"];
+    phoone=documentSnapshot["password"];
+    Headline=documentSnapshot["headline"];
+    position=documentSnapshot["position"];
+    Education=documentSnapshot["education"];
+    Country=documentSnapshot["country"];
+    location=documentSnapshot["location"];
+    industry=documentSnapshot["industry"];
+    onlineStatus=documentSnapshot["onlineStatus"];
+    imgStr=documentSnapshot["imgStr"];
+  }
 }

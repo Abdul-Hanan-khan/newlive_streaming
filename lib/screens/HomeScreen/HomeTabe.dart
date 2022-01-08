@@ -4,7 +4,7 @@ import 'package:newlive_streaming/screens/HomeScreen/TabScreen/GoLive.dart';
 import 'package:newlive_streaming/screens/HomeScreen/TabScreen/Home.dart';
 import 'AgoraTokenScreen/index.dart';
 class HomeTab extends StatefulWidget {
-  const HomeTab({Key key}) : super(key: key);
+  const HomeTab({Key ?key}) : super(key: key);
 
   @override
   _HomeTabState createState() => _HomeTabState();

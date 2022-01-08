@@ -6,7 +6,7 @@ import 'package:newlive_streaming/widget/contant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginWithFacebook extends StatefulWidget {
-  const LoginWithFacebook({Key key}) : super(key: key);
+  const LoginWithFacebook({Key? key}) : super(key: key);
 
   @override
   _LoginWithFacebookState createState() => _LoginWithFacebookState();
@@ -58,7 +58,7 @@ class _LoginWithFacebookState extends State<LoginWithFacebook> {
     );
 
     // Create a credential from the access token
-    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken.token);
+    final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
     final userData = await FacebookAuth.instance.getUserData();
 

@@ -1,5 +1,5 @@
 class ChatMessage{
   String messageContent;
   String messageType;
-  ChatMessage({ this.messageContent,  this.messageType});
+  ChatMessage({  required this.messageContent,   required this.messageType});
 }

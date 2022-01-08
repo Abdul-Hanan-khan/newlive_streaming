@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:newlive_streaming/screens/FullScreen.dart';
 
 class GoLive extends StatefulWidget {
-  const GoLive({Key key}) : super(key: key);
+  const GoLive({Key ?key}) : super(key: key);
 
   @override
   _GoLiveState createState() => _GoLiveState();

@@ -14,7 +14,7 @@ class CallPage extends StatefulWidget {
   final ClientRole role;
 
   /// Creates a call page with given channel name.
-  const CallPage({Key key, this.channelName, this.role}) : super(key: key);
+  const CallPage({Key ? key, required this.channelName, required this.role}) : super(key: key);
 
   @override
   _CallPageState createState() => _CallPageState();
@@ -24,15 +24,15 @@ class _CallPageState extends State<CallPage> {
   final _users = <int>[];
   final _infoStrings = <String>[];
   bool muted = false;
-   RtcEngine _engine;
+   RtcEngine ? _engine;
 
   @override
   void dispose() {
     // clear users
     _users.clear();
     // destroy sdk
-    _engine.leaveChannel();
-    _engine.destroy();
+    _engine!.leaveChannel();
+    _engine!.destroy();
     super.dispose();
   }
 
@@ -56,24 +56,24 @@ class _CallPageState extends State<CallPage> {
 
     await _initAgoraRtcEngine();
     _addAgoraEventHandlers();
-    await _engine.enableWebSdkInteroperability(true);
+    await _engine!.enableWebSdkInteroperability(true);
     VideoEncoderConfiguration configuration = VideoEncoderConfiguration();
     configuration.dimensions = VideoDimensions(width: 1920, height: 1080);
-    await _engine.setVideoEncoderConfiguration(configuration);
-    await _engine.joinChannel(Token, widget.channelName, null, 0);
+    await _engine!.setVideoEncoderConfiguration(configuration);
+    await _engine!.joinChannel(Token, widget.channelName, null, 0);
   }
 
   /// Create agora sdk instance and initialize
   Future<void> _initAgoraRtcEngine() async {
     _engine = await RtcEngine.create(APP_ID);
-    await _engine.enableVideo();
-    await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
-    await _engine.setClientRole(widget.role);
+    await _engine!.enableVideo();
+    await _engine!.setChannelProfile(ChannelProfile.LiveBroadcasting);
+    await _engine!.setClientRole(widget.role);
   }
 
   /// Add agora event handlers
   void _addAgoraEventHandlers() {
-    _engine.setEventHandler(RtcEngineEventHandler(error: (code) {
+    _engine!.setEventHandler(RtcEngineEventHandler(error: (code) {
       setState(() {
         final info = 'onError: $code';
         _infoStrings.add(info);
@@ -279,11 +279,11 @@ class _CallPageState extends State<CallPage> {
     setState(() {
       muted = !muted;
     });
-    _engine.muteLocalAudioStream(muted);
+    _engine!.muteLocalAudioStream(muted);
   }
 
   void _onSwitchCamera() {
-    _engine.switchCamera();
+    _engine!.switchCamera();
   }
 
   @override

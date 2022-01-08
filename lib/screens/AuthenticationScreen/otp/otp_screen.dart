@@ -15,13 +15,13 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
-  String verificationId;
+  late String verificationId;
   bool showLoading = false;
   FirebaseAuth _auth = FirebaseAuth.instance;
-  String userPin;
+  late String userPin;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
-  Timer _timer;
+  Timer ? _timer;
   int _start = 35;
 bool timerstoped=false;
   void startTimer() {
@@ -157,8 +157,8 @@ bool timerstoped=false;
       }
     } on FirebaseAuthException catch (e) {
       showLoading = false;
-      scaffoldKey.currentState.showSnackBar(
-          SnackBar(content: Text(e.message)));
+      scaffoldKey.currentState!.showSnackBar(
+          SnackBar(content: Text('${e.message}')));
       print(e);
     }
   }
@@ -173,8 +173,8 @@ bool timerstoped=false;
           // sinInWithPhoneAuthCredentials( phoneAuthCredential) {}
         },
         verificationFailed: (verificationFailed) async {
-          scaffoldKey.currentState.showSnackBar(
-              SnackBar(content: Text(verificationFailed.message)));
+          scaffoldKey.currentState!.showSnackBar(
+              SnackBar(content: Text('${verificationFailed.message}')));
         },
         codeSent: (verificationId, sendingToken) async {
           setState(() {

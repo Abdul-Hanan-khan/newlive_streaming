@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 
 class Live_Catogories extends StatefulWidget {
   String catgoryname;
-Live_Catogories({Key key, this.catgoryname}) : super(key: key);
+Live_Catogories({Key ?key, required this.catgoryname}) : super(key: key);
 
   @override
   _Live_CatogoriesState createState() => _Live_CatogoriesState();

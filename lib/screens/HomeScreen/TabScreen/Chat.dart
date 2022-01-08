@@ -3,7 +3,7 @@ import 'package:newlive_streaming/ChatingModule/chatUser.dart';
 import 'package:newlive_streaming/widget/conversationList.dart';
 
 class Chat extends StatefulWidget {
-  const Chat({Key key}) : super(key: key);
+  const Chat({Key? key}) : super(key: key);
 
   @override
   _ChatState createState() => _ChatState();

@@ -7,8 +7,8 @@ class ConversationList extends StatefulWidget{
   String imageUrl;
   String time;
   bool isMessageRead;
-  ConversationList({Key key, this.name, this.messageText,
-     this.imageUrl, this.time, this.isMessageRead}):super(key: key);
+  ConversationList({Key? key, required this.name, required this.messageText,
+     required this.imageUrl, required this.time, required this.isMessageRead}):super(key: key);
   @override
   _ConversationListState createState() => _ConversationListState();
 }

@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../variables.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
+  const Home({Key ?key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -169,7 +169,7 @@ class _HomeState extends State<Home> {
                     } else {
                       return ListView(
                         scrollDirection: Axis.horizontal,
-                        children: snapshot.data.docs.map((doc) {
+                        children: snapshot.data!.docs.map((doc) {
 
                            Uint8List bytes=base64Decode(doc.get('imgStr'));
                                 return  InkWell(

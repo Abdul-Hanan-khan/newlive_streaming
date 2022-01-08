@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:newlive_streaming/variables.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key key}) : super(key: key);
+  const ProfilePage({Key ?key}) : super(key: key);
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -30,9 +30,9 @@ class _ProfilePageState extends State<ProfilePage> {
   bool checksave=false;
   bool isLoading= false;
   bool v=false;
-  File _image;
-   String fileImageAsString;
-   Uint8List bytes;
+  File? _image;
+   String ?fileImageAsString;
+   Uint8List? bytes;
   initState(){
     setState(() {
 
@@ -56,10 +56,10 @@ class _ProfilePageState extends State<ProfilePage> {
     var picker=ImagePicker();
     var image = await picker.getImage(source: ImageSource.gallery);
     setState(() {
-      _image = File(image.path) ;
+      _image = File(image!.path) ;
     });
 
-    List<int> imageBase64 = _image.readAsBytesSync();
+    List<int> imageBase64 = _image!.readAsBytesSync();
      fileImageAsString = base64Encode(imageBase64);
     updateUserImage().then((value)  {
       setState(() { });
@@ -114,7 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child:CircleAvatar(
                                 radius: 45,
                                 backgroundColor: Colors.white,
-                                backgroundImage: MemoryImage(bytes),
+                                backgroundImage: MemoryImage(bytes!),
 
                               ),
                               ),
@@ -368,9 +368,9 @@ class _ProfilePageState extends State<ProfilePage> {
         'imgStr':fileImageAsString,
       }
     );
-    Variables.imgStr=fileImageAsString;
+    Variables.imgStr=fileImageAsString!;
     setState(() {
-      bytes=base64Decode(fileImageAsString);
+      bytes=base64Decode(fileImageAsString!);
       isLoading=false;
 
     });

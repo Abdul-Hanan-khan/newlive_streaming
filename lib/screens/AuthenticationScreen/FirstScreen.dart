@@ -3,7 +3,7 @@ import 'package:newlive_streaming/widget/Buttons.dart';
 
 
 class FirstScreen extends StatefulWidget {
-  const FirstScreen({Key key}) : super(key: key);
+  const FirstScreen({Key? key}) : super(key: key);
 
   @override
   _FirstScreenState createState() => _FirstScreenState();

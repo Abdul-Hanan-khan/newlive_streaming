@@ -9,7 +9,7 @@ class CredentialsScreen extends StatefulWidget {
 }
 
 class _CredentialsScreenState extends State<CredentialsScreen> {
-  String phone;
+  String ?phone;
 
   @override
   Widget build(BuildContext context) {
